@@ -1,4 +1,4 @@
-# flir (development)
+# flir 0.3.0
 
 - **BREAKING**: `flint` is renamed `flir` to avoid namespace conflict with 
   the recent [`flint` package](https://cran.r-project.org/web/packages/flint/) 
@@ -12,6 +12,7 @@
     - `update_flint()` is renamed `update_flir()`;
     - ignoring specific lines now requires `flir-ignore` instead of 
       `flint-ignore`;
+    - the environment variable `FLINT_ERROR_ON_LINT` is renamed `FLIR_ERROR_ON_LINT`;
     - if `flint` was used in a package, `.Rbuildignore` must be updated to 
       ignore the folder `flir` instead of `flint`.
 

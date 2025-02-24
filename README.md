@@ -8,6 +8,13 @@
 [![R-CMD-check](https://github.com/etiennebacher/flir/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/etiennebacher/flir/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+------------------------------------------------------------------------
+
+:information_source: Until v0.2.1 (included), this package was named
+`flint`. In v0.3.0, it was renamed `flir`.
+
+------------------------------------------------------------------------
+
 `flir` is a small R package to find and replace lints in R code.
 
 - Lints detection with `lint()`
@@ -155,8 +162,8 @@ bench::mark(
 #> # A tibble: 2 × 6
 #>   expression      min   median `itr/sec` mem_alloc `gc/sec`
 #>   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 lintr         1.59s    1.59s     0.629  315.22MB     4.40
-#> 2 flir       103.56ms 106.92ms     9.37     1.82MB     0
+#> 1 lintr          1.7s     1.7s     0.588  306.24MB     3.53
+#> 2 flir        110.5ms    116ms     8.73     1.79MB     0
 ```
 
 ## Why the name “flir”?

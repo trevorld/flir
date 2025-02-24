@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/etiennebacher/flir/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/etiennebacher/flir/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+---
+
+:information_source: Until v0.2.1 (included), this package was named `flint`. In v0.3.0, it was renamed `flir`.
+
+---
+
 
 `flir` is a small R package to find and replace lints in R code.
 
