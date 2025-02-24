@@ -16,7 +16,7 @@
     - if `flint` was used in a package, `.Rbuildignore` must be updated to 
       ignore the folder `flir` instead of `flint`.
 
-# flint 0.2.1
+# flir 0.2.1
 
 ## New features
 
@@ -36,7 +36,7 @@
 
 * Do not print "empty data.table(...)" when no lints are detected.
 
-# flint 0.2.0
+# flir 0.2.0
 
 ## New features
 
@@ -74,7 +74,7 @@
 * No longer lint and fix `expect_equal(names(x), names(y))`, which is more 
   readable than `expect_named(x, names(y))`.
 
-# flint 0.1.2
+# flir 0.1.2
 
 ## New features
 
@@ -96,7 +96,7 @@
   `expect_identical_linter` and `expect_type_linter`, which lead to a wrong
   rewrite. It is now replaced by `expect_type(x, 'class')`.
 
-# flint 0.1.1
+# flir 0.1.1
 
 ## Bug fixes
 
@@ -108,7 +108,7 @@
 * `fix_dir()` and `fix_package()` now have the arguments `force` and `verbose`,
   like `fix()`.
 
-# flint 0.1.0
+# flir 0.1.0
 
 ## New features
 
@@ -118,7 +118,7 @@
   files.
 * `update_flint()` now updates all rules and doesn't only add new rules anymore.
 
-# flint 0.0.9
+# flir 0.0.9
 
 ## New features
 
@@ -127,7 +127,7 @@
 * `setup_flir()` now puts built-in rules in `flint/rules/builtin`.
 
 
-# flint 0.0.8
+# flir 0.0.8
 
 ## New features
 
@@ -137,7 +137,7 @@
 * Add one case in `seq_linter` where `seq_len(x)` is faster than `seq(1, x)`.
 * Better handling of `exclude_path`.
 
-# flint 0.0.7
+# flir 0.0.7
 
 ## New features
 
@@ -147,14 +147,14 @@
 * Add argument `overwrite` to `setup_flir_gha()`.
 
 
-# flint 0.0.6
+# flir 0.0.6
 
 ## New features
 
 * New linter `redundant_equals_linter`.
 * Better support for `matrix_apply_linter`.
 
-# flint 0.0.5
+# flir 0.0.5
 
 ## New features
 
@@ -174,7 +174,7 @@
 
 * Add links to `lintr` documentation in the manual pages.
 
-# flint 0.0.4
+# flir 0.0.4
 
 ## New features
 
@@ -191,7 +191,7 @@
 
 * Allow usage of `T` and `F` in formulas (#33).
 
-# flint 0.0.3
+# flir 0.0.3
 
 ## New features
 
@@ -210,7 +210,7 @@
 
 * Fix a few false positives (#23, #24, #27).
 
-# flint 0.0.2
+# flir 0.0.2
 
 ## New features
 
@@ -232,6 +232,6 @@
   equivalent in some cases](https://github.com/vincentarelbundock/marginaleffects/pull/1171#issuecomment-2228497287). Thanks Vincent Arel-Bundock for spotting this.
 
 
-# flint 0.0.1
+# flir 0.0.1
 
 * First Github release.
