@@ -3,6 +3,8 @@
 
 # flir
 
+(pronounced “fleer” as in “beer”)
+
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/etiennebacher/flir/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/etiennebacher/flir/actions/workflows/R-CMD-check.yaml)
@@ -157,13 +159,13 @@ bench::mark(
   ),
   check = FALSE
 )
-#> Warning: Some expressions had a GC in every iteration; so
-#> filtering is disabled.
+#> Warning: Some expressions had a GC in every iteration; so filtering
+#> is disabled.
 #> # A tibble: 2 × 6
 #>   expression      min   median `itr/sec` mem_alloc `gc/sec`
 #>   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 lintr          1.7s     1.7s     0.588  306.24MB     3.53
-#> 2 flir        110.5ms    116ms     8.73     1.79MB     0
+#> 1 lintr         2.97s    2.97s     0.337  315.05MB     2.36
+#> 2 flir       180.79ms 181.69ms     5.43     1.85MB     0
 ```
 
 ## Why the name “flir”?
