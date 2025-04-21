@@ -176,7 +176,6 @@ get_linters_from_config <- function(path) {
       error = function(e) fs::path_dir(path)
     )
   }
-  # browser()
   if (is_flir_package(path)) {
     config_file <- "inst/config.yml"
   } else {

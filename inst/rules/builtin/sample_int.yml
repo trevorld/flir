@@ -39,5 +39,5 @@ rule:
 constraints:
   FIRST:
     regex: ^\d+(L|)$
-fix: sample.int(~~N~~, ~~OTHER~~)
+fix: sample.int(~~FIRST~~, ~~OTHER~~)
 message: sample.int(n, m, ...) is preferable to sample(n, m, ...).

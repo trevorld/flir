@@ -1,19 +1,25 @@
+# flir (development)
+
+## Bug fixes
+
+- Fix error in replacement in rule `sample_int-4`.
+
 # flir 0.3.0
 
-- **BREAKING**: `flint` is renamed `flir` to avoid namespace conflict with 
-  the recent [`flint` package](https://cran.r-project.org/web/packages/flint/) 
+- **BREAKING**: `flint` is renamed `flir` to avoid namespace conflict with
+  the recent [`flint` package](https://cran.r-project.org/web/packages/flint/)
   on CRAN. Thanks to Mikael Jagan for the warning (#63).
 
   Consequences:
     - `setup_flint()` is renamed `setup_flir()` and creates a folder
       named `flir` instead of `flint`;
-    - `setup_flint_gha()` is renamed `setup_flir_gha()` and creates a 
+    - `setup_flint_gha()` is renamed `setup_flir_gha()` and creates a
       YAML file named `flir.yml` instead of `flint.yml`;
     - `update_flint()` is renamed `update_flir()`;
-    - ignoring specific lines now requires `flir-ignore` instead of 
+    - ignoring specific lines now requires `flir-ignore` instead of
       `flint-ignore`;
     - the environment variable `FLINT_ERROR_ON_LINT` is renamed `FLIR_ERROR_ON_LINT`;
-    - if `flint` was used in a package, `.Rbuildignore` must be updated to 
+    - if `flint` was used in a package, `.Rbuildignore` must be updated to
       ignore the folder `flir` instead of `flint`.
 
 # flir 0.2.1
@@ -28,7 +34,7 @@
 * No longer error about unavailable sourceMarkers when running `lint()` in
   Positron.
 
-* Better detection of `flint/config.yml` when using running `flint` on a 
+* Better detection of `flint/config.yml` when using running `flint` on a
   package or a directory.
 
 * The cache used after `setup_flir()` is now invalidated if the rules used
@@ -46,8 +52,8 @@
 * New linter `list_comparison_linter()` to detect a comparison with a list,
   e.g. `lapply(x, sum) > 10`. No automatic fix available.
 
-* Line breaks are removed from multi-line messages reported by `lint*` 
-  functions. 
+* Line breaks are removed from multi-line messages reported by `lint*`
+  functions.
 
 * `matrix_apply_linter` now detects when `1L` and `2L` are used in the `MARGIN`
   argument.
@@ -61,24 +67,24 @@
   wrapped in `suppressPackageStartupMessages()`.
 
 * Nested fixes no longer overlap. The `fix*()` functions now run several times
-  on the files containing nested fixes until there are no more fixes to apply. 
+  on the files containing nested fixes until there are no more fixes to apply.
   This can be deactivated to run only once per file by adding `rerun = FALSE`
   (#61).
 
 * `any_is_na_linter` wrongly reported cases like `any(is.na(x), y)`. Those are
   no longer reported.
 
-* No longer lint and fix `expect_equal(length(x), length(y))`, which is more 
+* No longer lint and fix `expect_equal(length(x), length(y))`, which is more
   readable than `expect_length(x, length(y))`.
 
-* No longer lint and fix `expect_equal(names(x), names(y))`, which is more 
+* No longer lint and fix `expect_equal(names(x), names(y))`, which is more
   readable than `expect_named(x, names(y))`.
 
 # flir 0.1.2
 
 ## New features
 
-* `sample(n, m)` is now reported and can be rewritten as `sample.int(n, m)` 
+* `sample(n, m)` is now reported and can be rewritten as `sample.int(n, m)`
   when `n` is a literal integer.
 
 ## Bug fixes
@@ -86,7 +92,7 @@
 * Rule names have been harmonized to use a dash instead of underscore, e.g.
   `any_duplicated-1` instead of `any_duplicated_1`.
 
-* Replacement of `redundant_ifelse_linter` of the form 
+* Replacement of `redundant_ifelse_linter` of the form
   `ifelse(cond, FALSE, TRUE)` now works (#57).
 
 * `absolute_path_linter` was deactivated in 0.0.5 but was still reported. It is
@@ -102,7 +108,7 @@
 
 * `fix()` and `lint()` now work correctly when several paths are passed.
 
-* `fix_package()` and `lint_package()` used all R files present from the root 
+* `fix_package()` and `lint_package()` used all R files present from the root
   path, even those in folders that are not typical of an R package.
 
 * `fix_dir()` and `fix_package()` now have the arguments `force` and `verbose`,
@@ -112,7 +118,7 @@
 
 ## New features
 
-* New linters: `rep_len_linter()`, `sample_int_linter()` and 
+* New linters: `rep_len_linter()`, `sample_int_linter()` and
   `which_grepl_linter()`.
 * Add a menu or an error if `fix()` and its variants would change some unstaged
   files.
@@ -163,13 +169,13 @@
 * New linter `unnecessary_nesting_linter`.
 * Add messages for `lint()` and `fix()` showing the number of files checked, lints
   found and/or fixed.
-  
+
 ## Bug fixes
 
 * More robust detection of allowed usage of `T` and `F` in formulas.
 * Use the pipe in the replacement for `lengths_linter` if it was already present
   in code.
-  
+
 ## Misc
 
 * Add links to `lintr` documentation in the manual pages.
@@ -180,8 +186,8 @@
 
 * New linters: `for_loop_index`,`missing_argument`.
 * `fix()` has a new argument `force` (`FALSE` by default). This is useful if Git
-  was not detected, `fix()` would modify several files, and it is run in a 
-  non-interactive context. In this situation, set `force = TRUE` to apply the 
+  was not detected, `fix()` would modify several files, and it is run in a
+  non-interactive context. In this situation, set `force = TRUE` to apply the
   fixes anyway.
 * Add `cli` messages informing how many files are checked, and how many contain
   lints (for `lint_*` functions) or were modified (for `fix_*` functions).
@@ -195,14 +201,14 @@
 
 ## New features
 
-* New linters: `absolute_path`, `duplicate_argument`, `empty_assignment`, 
-  `expect_length`, `expect_not`, `expect_null`, `expect_true_false`, 
-  `expect_type`, `literal_coercion`, `nested_ifelse`, `sort`, 
+* New linters: `absolute_path`, `duplicate_argument`, `empty_assignment`,
+  `expect_length`, `expect_not`, `expect_null`, `expect_true_false`,
+  `expect_type`, `literal_coercion`, `nested_ifelse`, `sort`,
   `undesirable_operator`.
 * Added a contributing guide.
 * Better docs for `fix()` and its variants.
 * Using `fix()` on several files without using Git now opens an interactive
-  menu so that the user confirms they want to run `fix()`. In case of 
+  menu so that the user confirms they want to run `fix()`. In case of
   non-interactive use, this errors.
 * Ignore lines following `# nolint` for compatibility with `lintr`.
 
@@ -214,19 +220,19 @@
 
 ## New features
 
-* New linters: `expect_named`, `numeric_leading_zero`, `outer_negation`, 
+* New linters: `expect_named`, `numeric_leading_zero`, `outer_negation`,
   `redundant_ifelse`, `undesirable_function`, `unreachable_code`.
-  
+
 * `fix_dir()`, `fix_package()`, `lint_dir()`, `lint_package()` now have arguments
   to exclude paths, linters, and use cache.
-  
+
 * Removed `browser` linter (it is now part of `undesriable_function`).
 
 * Add support for a `flint/config.yml` file that contains the list of linters
   to use so that one doesn't need to constantly specify them in `lint()` or `fix()`.
- 
 
-## Bug fixes 
+
+## Bug fixes
 
 * Do not lint for `x %in% class(y)` where `x` is not a string as this is [not
   equivalent in some cases](https://github.com/vincentarelbundock/marginaleffects/pull/1171#issuecomment-2228497287). Thanks Vincent Arel-Bundock for spotting this.
