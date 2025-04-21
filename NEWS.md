@@ -1,4 +1,4 @@
-# flir (development)
+# flir (development version)
 
 ## Breaking changes
 
