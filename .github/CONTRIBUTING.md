@@ -34,6 +34,11 @@ possible, try to illustrate your proposal or the bug with a minimal
   `NEWS.md` describing the changes made. You may optionally add your
   GitHub username, and links to relevant issue(s)/PR(s).
 
+### Formatting
+
+Formatting of R files is done by `air`, a command-line tool (not an R
+package). You can install it by following [these instructions](https://posit-dev.github.io/air/cli.html), and then run `air format .` in the folder.
+
 ### How to add a new lint rule in `flir`?
 
 Adding a rule that exists in `lintr`:
@@ -44,10 +49,10 @@ Adding a rule that exists in `lintr`:
    `get_tests_from_lintr("expect_length")`.
 1. Add `"<rule_name>"` in the list of linters located in `R/list-linters.R`.
 1. Load the package with `devtools::load_all()`, and then run `update_linter_factory()`.
-   This creates a new entry in `R/linters_factory.R`. 
+   This creates a new entry in `R/linters_factory.R`.
 1. Run `devtools::document()` to register this new entry.
-1. Tweak the `.yml` file so that most tests pass (in some cases, some `lintr` 
-   tests can be commented out). 
+1. Tweak the `.yml` file so that most tests pass (in some cases, some `lintr`
+   tests can be commented out).
 1. If the rule comes with a fix, add additional snapshot tests for `fix_text()`,
    e.g.
 
