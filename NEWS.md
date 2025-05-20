@@ -1,3 +1,13 @@
+# flir (0.4.1)
+
+## Bug fixes
+
+* Changes were still directly applied to files that are unstaged
+  in Git while there should have been a warning. This is now fixed.
+  
+* Properly skip changes in the user picks "No" in the menu about 
+  modifying unstaged files in Git.
+
 # flir (0.4.0)
 
 ## Breaking changes

@@ -39,7 +39,7 @@ test_that("rep_len_linter blocks simple disallowed usages", {
 
 test_that("vectorized lints work", {
   linter <- rep_len_linter()
-  lint_msg <- rex::rex("Use rep_len(x, n) instead of rep(x, length.out = n).")
+  lint_msg <- "Use rep_len(x, n) instead of rep(x, length.out = n)."
 
   expect_equal(
     nrow(

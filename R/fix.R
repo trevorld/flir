@@ -68,12 +68,17 @@ fix <- function(
 
   if (uses_git()) {
     unstaged_files <- unlist(git2r::status()$unstaged)
+    unstaged_files <- fs::path_abs(unstaged_files)
     if (any(r_files %in% unstaged_files)) {
       if (interactive()) {
-        utils::menu(
+        choice <- utils::menu(
           title = "It is recommended to commit or discard all modified files before running `fix()`. Do you want to apply fixes anyway?",
           choices = c("Yes", "No")
         )
+        if (choice == 2) {
+          cli::cli_inform(c(i = "No changes applied."))
+          return(invisible())
+        }
       } else if (isFALSE(force)) {
         stop(
           "It is recommended to commit or discard all modified files before running `fix()`. Therefore, this operation is not allowed by default in
