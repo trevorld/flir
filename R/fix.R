@@ -90,10 +90,14 @@ fix <- function(
 
   if (length(r_files) > 1 && !uses_git()) {
     if (interactive()) {
-      utils::menu(
+      choice <- utils::menu(
         title = "This will run `fix()` on several R files. It seems that you are not using Git, which will make it difficult to see the changes in code. Do you want to continue?",
         choices = c("Yes", "No")
       )
+      if (choice == 2) {
+        cli::cli_inform(c(i = "No changes applied."))
+        return(invisible())
+      }
     } else if (isFALSE(force)) {
       stop(
         "It seems that you are not using Git, but `fix()` will be applied on several R files. This will make it difficult to see the changes in code. Therefore, this operation is not allowed by default in a non-interactive setting. Use `force = TRUE` to bypass this behavior."
