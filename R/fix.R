@@ -19,6 +19,11 @@
 #' @param rerun Run the function several times until there are no more fixes to
 #' apply. This is useful in the case of nested lints. If `FALSE`, the function
 #' runs only once, potentially ignoring nested fixes.
+#' @param interactive Opens a Shiny app that shows a visual diff of each
+#' modified file. This is particularly useful when you want to review the
+#' potential fixes before accepting them. Setting this to `TRUE` will disable
+#' the check on whether Git is used.
+#'
 #' @inheritSection lint Ignoring lines
 #'
 #' @export
@@ -55,18 +60,23 @@ fix <- function(
   exclude_linters = NULL,
   force = FALSE,
   verbose = TRUE,
-  rerun = TRUE
+  rerun = TRUE,
+  interactive = FALSE
 ) {
   if (isFALSE(verbose) | is_testing()) {
     withr::local_options(cli.default_handler = function(...) {
     })
   }
 
+  if (isTRUE(interactive)) {
+    rlang::check_installed(c("shiny", "diffviewer"))
+  }
+
   rule_files <- resolve_linters(path, linters, exclude_linters)
   r_files <- resolve_path(path, exclude_path)
   fixes <- list()
 
-  if (uses_git()) {
+  if (uses_git() && isFALSE(interactive)) {
     unstaged_files <- unlist(git2r::status()$unstaged)
     unstaged_files <- fs::path_abs(unstaged_files)
     if (any(r_files %in% unstaged_files)) {
@@ -91,7 +101,7 @@ fix <- function(
   if (length(r_files) > 1 && !uses_git()) {
     if (interactive()) {
       choice <- utils::menu(
-        title = "This will run `fix()` on several R files. It seems that you are not using Git, which will make it difficult to see the changes in code. Do you want to continue?",
+        title = "It seems that you are not using Git, which will make it difficult to see the changes in code. Do you want to continue?",
         choices = c("Yes", "No")
       )
       if (choice == 2) {
@@ -122,7 +132,7 @@ fix <- function(
       if (!has_skipped_fixes) {
         break
       }
-      res <- parse_and_rewrite_file(file, rule_files)
+      res <- parse_and_rewrite_file(file, rule_files, interactive)
       needed_fixing[[file]] <- res[["needed_fixing"]]
       fixes[[file]] <- res[["fixes"]]
       n_fixes[[file]] <- res[["n_fixes"]]
@@ -152,7 +162,8 @@ fix_dir <- function(
   exclude_linters = NULL,
   force = FALSE,
   verbose = TRUE,
-  rerun = TRUE
+  rerun = TRUE,
+  interactive = FALSE
 ) {
   if (!fs::is_dir(path)) {
     stop("`path` must be a directory.")
@@ -164,7 +175,8 @@ fix_dir <- function(
     exclude_linters = exclude_linters,
     force = force,
     verbose = verbose,
-    rerun = rerun
+    rerun = rerun,
+    interactive = interactive
   )
 }
 
@@ -178,7 +190,8 @@ fix_package <- function(
   exclude_linters = NULL,
   force = FALSE,
   verbose = TRUE,
-  rerun = TRUE
+  rerun = TRUE,
+  interactive = FALSE
 ) {
   if (!fs::is_dir(path)) {
     stop("`path` must be a directory.")
@@ -195,7 +208,8 @@ fix_package <- function(
     exclude_linters = exclude_linters,
     force = force,
     verbose = verbose,
-    rerun = rerun
+    rerun = rerun,
+    interactive = interactive
   )
 }
 
@@ -243,10 +257,19 @@ fix_text <- function(
   out
 }
 
-parse_and_rewrite_file <- function(file, rule_files) {
+parse_and_rewrite_file <- function(file, rule_files, interactive) {
   needed_fixing <- TRUE
+
+  file_to_parse <- file
+
+  if (isTRUE(interactive)) {
+    new_file <- tempfile(fileext = ".R")
+    fs::file_copy(file, new_file)
+    file_to_parse <- new_file
+  }
+
   root <- astgrepr::tree_new(
-    file = file,
+    file = file_to_parse,
     ignore_tags = c("flir-ignore", "nolint")
   ) |>
     astgrepr::tree_root()
@@ -258,7 +281,6 @@ parse_and_rewrite_file <- function(file, rule_files) {
   n_fixes <- length(lints)
 
   if (length(lints) == 0) {
-    needed_fixing <- FALSE
     return(
       list(
         needed_fixing = FALSE,
@@ -281,7 +303,20 @@ parse_and_rewrite_file <- function(file, rule_files) {
 
   fixes <- astgrepr::tree_rewrite(root, replacement2)
 
-  writeLines(text = fixes, file)
+  if (isTRUE(interactive)) {
+    writeLines(text = fixes, new_file)
+    skipped <- review_app(
+      name = file,
+      old_path = file,
+      new_path = file_to_parse
+    )
+    if (isTRUE(skipped)) {
+      needed_fixing <- FALSE
+      n_fixes <- 0
+    }
+  } else {
+    writeLines(text = fixes, file)
+  }
   list(
     needed_fixing = needed_fixing,
     fixes = fixes,
