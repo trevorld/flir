@@ -1,12 +1,13 @@
 #' Get the list of linters in `flir`
 #'
+#' @inheritParams lint
 #' @return A character vector
 #' @export
 #'
 #' @examples
 #' list_linters()
-list_linters <- function() {
-  c(
+list_linters <- function(path = ".") {
+  out <- c(
     # "absolute_path", # TODO: really broken, too many false positives, e.g #42
     "any_duplicated",
     "any_is_na",
@@ -59,11 +60,13 @@ list_linters <- function() {
     "unreachable_code",
     "which_grepl"
   )
+  keep_or_exclude_testthat_rules(path, out)
 }
 
-update_linter_factory <- function() {
+update_linter_factory <- function(path = ".") {
   suppressWarnings(file.remove("R/linters_factory.R"))
-  for (i in list_linters()) {
+  list_linters <- list_linters(path)
+  for (i in list_linters) {
     if (grepl("assignment", i)) {
       cat(
         sprintf(
@@ -102,7 +105,7 @@ makeActiveBinding('%s_linter', function() { function() '%s' }, env = environment
   cat(
     paste0(
       "keep:\n",
-      paste("  -", list_linters(), collapse = "\n")
+      paste("  -", list_linters, collapse = "\n")
     ),
     file = "inst/config.yml"
   )
