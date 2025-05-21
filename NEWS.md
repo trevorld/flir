@@ -6,7 +6,7 @@
   files that are parsed belong to a package that doesn't have a `tests/testthat`
   folder (for instance if you use `tinytest` instead). (#74)
 
-# flir (0.4.1)
+# flir 0.4.1
 
 ## Bug fixes
 
@@ -16,7 +16,7 @@
 * Properly skip changes in the user picks "No" in the menu about 
   modifying unstaged files in Git.
 
-# flir (0.4.0)
+# flir 0.4.0
 
 ## Breaking changes
 
