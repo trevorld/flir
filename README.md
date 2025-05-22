@@ -90,8 +90,8 @@ any(duplicated(y))
 #> anyDuplicated(y) > 0
 ```
 
-See the vignette [Automated
-fixes](https://flir.etiennebacher.com/articles/automated_fixes) to see
+See the vignette [Automatic
+fixes](https://flir.etiennebacher.com/articles/automatic_fixes) to see
 how to be more confident about changes introduced by `flir`.
 
 ## Real-life examples
@@ -168,8 +168,8 @@ bench::mark(
 #> # A tibble: 2 × 6
 #>   expression      min   median `itr/sec` mem_alloc `gc/sec`
 #>   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 lintr         1.84s    1.84s     0.542  315.05MB    21.7 
-#> 2 flir        110.2ms  111.3ms     8.79     1.85MB     5.27
+#> 1 lintr         2.55s    2.55s     0.392  315.05MB    15.7 
+#> 2 flir       124.69ms 126.48ms     7.87     1.85MB     3.93
 ```
 
 ## Why the name “flir”?

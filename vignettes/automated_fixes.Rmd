@@ -1,8 +1,8 @@
 ---
-title: "Automated fixes"
+title: "Automatic fixes"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Automated fixes}
+  %\VignetteIndexEntry{Automatic fixes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,17 +19,17 @@ library(flir)
 ```
 
 The main feature of `flir` is that it can provide automatic fixes for some linters. 
-This is very useful to avoid the tedious job of fixing by hand but you may be worried about it applying wrong fixes.
+This is very useful to avoid the tedious job of fixing many files by hand but you may be worried about it applying wrong fixes.
 Moreover, since those fixes can be applied to several files at once, going back in time before those fixes were applied can be very difficult.
 `flir` provides two mechanisms to be more confident about automated fixes.
 
 ## Use Git
 
-By default, if the files that would receive fixes are not covered by Git version control, a menu will appear recommending you to use Git. 
+By default, if `flir` would automatically fix several files and the project doesn't use Git for version control, a menu will appear recommending you to use Git. 
 At this stage, you can still decide whether you want to apply the fixes or stop here without changing anything.
 
 Git makes it much easier to see changed files and it is therefore very recommended to use it in combination with `flir`. 
-Similarly, if some files are unstaged (meaning that they have changes not yet covered by Git), another menu will ask you to confirm that you want to apply fixes. 
+Similarly, if some files are unstaged (meaning that they have changes not covered by Git yet), another menu will ask you to confirm that you want to apply fixes. 
 The reason is that for those unstaged files, it may be difficult to distinguish the new changes introduced by automated fixes from previous, unsaved changes.
 
 ## Interactively review all fixes
