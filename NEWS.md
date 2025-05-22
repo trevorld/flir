@@ -1,5 +1,12 @@
 # flir (development version)
 
+## New features
+
+* Most `fix_*()` functions have a new argument `interactive` (`FALSE` by 
+  default). When set to `TRUE`, it opens a Shiny app in the Viewer so that the
+  user can review fixes that would be applied to a file. It is therefore 
+  possible to accept or skip fixes on a file-by-file basis (#76).
+
 ## Changes
 
 * `unreachable_code` is deactivated by default. It can still be activated with
