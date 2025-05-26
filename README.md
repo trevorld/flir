@@ -126,8 +126,8 @@ lints.
 `styler` is a package to clean code by fixing indentation and other
 things, but doesn’t perform code replacement based on lints.
 
-`flir` is quite performant. This is a small benchmark on 3.5k lines of
-code with a few linters:
+`flir` is quite fast This is a small benchmark on 3.5k lines of code
+with a few linters:
 
 ``` r
 file <- system.file("bench/test.R", package = "flir")
@@ -168,8 +168,8 @@ bench::mark(
 #> # A tibble: 2 × 6
 #>   expression      min   median `itr/sec` mem_alloc `gc/sec`
 #>   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 lintr         2.55s    2.55s     0.392  315.05MB    15.7 
-#> 2 flir       124.69ms 126.48ms     7.87     1.85MB     3.93
+#> 1 lintr         1.89s    1.89s     0.530  315.05MB    20.7 
+#> 2 flir       106.59ms 110.28ms     9.02     1.84MB     5.41
 ```
 
 ## Why the name “flir”?
