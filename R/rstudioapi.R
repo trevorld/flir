@@ -1,4 +1,5 @@
 # Taken from lintr: R/lint.R
+# MIT License
 
 rstudio_source_markers <- function(lints) {
   if (nrow(lints) == 0) {
