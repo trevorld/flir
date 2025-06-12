@@ -14,10 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(flir)
-```
-
 Besides helping to detect a built-in list of bad patterns in R code, `flir` can also be used to refactor code, for instance by replacing the use of [deprecated or superseded](https://lifecycle.r-lib.org/articles/stages.html) functions.
 If you work on a project that uses `dplyr`, you could for instance [write your own rules](https://flir.etiennebacher.com/articles/adding_rules) to replace the use of `sample_n()` by `slice_sample()` (as described in [this blog post](https://www.etiennebacher.com/posts/2025-05-23-refactoring-code-with-flir/)).
 
