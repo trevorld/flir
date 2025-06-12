@@ -63,6 +63,16 @@ This is all that is needed from package developers. When users will install the 
 For instance, the first rule has `id: deprecated-describe`, so I should name the file `deprecated-describe.yml`.
 If you want to store several rules related to this deprecation, you could name the other rules `deprecated-describe_2`, `deprecated-describe_3`, etc. and store them in the same file, separated by `---`.
 
+Overall, the only changes I had to do in `tidypolars` are:
+
+```
+inst
+└── flir
+    └── rules
+        ├── deprecated-describe.yml
+        └── deprecated-describe_plan.yml
+```
+
 ## For users
 
 To use rules defined in other packages, you need to set up a `flir` folder with `setup_flir()`. 
