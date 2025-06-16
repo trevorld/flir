@@ -48,7 +48,7 @@ message: ...
     file = dest
   )
   if (rlang::is_interactive()) {
-    file.edit(dest)
+    utils::file.edit(dest)
   }
   cli::cli_alert_success("Created {.path {dest}}.")
   cli::cli_alert_info(
@@ -110,7 +110,7 @@ message: ...
     file = dest
   )
   if (rlang::is_interactive()) {
-    file.edit(dest)
+    utils::file.edit(dest)
   }
   cli::cli_alert_success("Created {.path {dest}}.")
 }

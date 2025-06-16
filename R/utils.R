@@ -60,7 +60,7 @@ get_tests_from_lintr <- function(name) {
   dest <- paste0("tests/testthat/test-", name, ".R")
   utils::download.file(url, destfile = dest)
   if (rlang::is_interactive()) {
-    file.edit(dest)
+    utils::file.edit(dest)
   }
 }
 
@@ -289,7 +289,7 @@ message: ...
     file = dest
   )
   if (rlang::is_interactive()) {
-    file.edit(dest)
+    utils::file.edit(dest)
   }
 }
 
