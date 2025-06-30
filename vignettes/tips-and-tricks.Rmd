@@ -139,7 +139,7 @@ file = my_rule
 ### Works when code has double quotes
 fix_text('my_function(value = "deprecated_value")', linters = my_rule)
 
-### Doesn't work when code has single quotes
+### Works when code has single quotes
 fix_text("my_function(value = 'deprecated_value')", linters = my_rule)
 ```
 
