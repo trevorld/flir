@@ -41,13 +41,19 @@ which is itself built on the Rust crate [`ast-grep`](https://ast-grep.github.io/
 
 ## Installation
 
+To get the CRAN version (stable):
+
 ``` r
-install.packages('flir', repos = c('https://etiennebacher.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages("flir")
 ```
 
-**Note:** using `remotes::install_github()`, `devtools::install_github()`,
-or `pak::pak()` without specifying the R-universe repo will require you to
-[setup Rust](https://www.rust-lang.org/tools/install) to build the package.
+To get the development version (unstable):
+
+```r
+# install.packages("remotes")
+remotes::install_github("etiennebacher/flir")
+```
+
 
 ## Usage
 

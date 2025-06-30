@@ -33,14 +33,18 @@ itself built on the Rust crate
 
 ## Installation
 
+To get the CRAN version (stable):
+
 ``` r
-install.packages('flir', repos = c('https://etiennebacher.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages("flir")
 ```
 
-**Note:** using `remotes::install_github()`,
-`devtools::install_github()`, or `pak::pak()` without specifying the
-R-universe repo will require you to [setup
-Rust](https://www.rust-lang.org/tools/install) to build the package.
+To get the development version (unstable):
+
+``` r
+# install.packages("remotes")
+remotes::install_github("etiennebacher/flir")
+```
 
 ## Usage
 
@@ -170,8 +174,8 @@ bench::mark(
 #> # A tibble: 2 × 6
 #>   expression      min   median `itr/sec` mem_alloc `gc/sec`
 #>   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 lintr         2.08s    2.08s     0.480  315.18MB    21.1 
-#> 2 flir       140.12ms 142.24ms     6.92     1.86MB     3.46
+#> 1 lintr         2.01s    2.01s     0.496  315.18MB    21.8 
+#> 2 flir       116.84ms 120.97ms     7.94     1.85MB     3.97
 ```
 
 ## Why the name “flir”?
